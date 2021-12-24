@@ -1,0 +1,113 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+# centops kurmak isteseniz generic/ubuntu2004 yeine generic/centos8  yazmanız yeterli
+
+# https://github.com/vagrant-libvirt/vagrant-libvirt
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+
+Vagrant.configure("2") do |config|
+
+# lb-01
+config.vm.define "lb-01" do |lb01|
+    lb01.vm.box = "generic/ubuntu2004"
+    lb01.vm.hostname="lb-01"
+    lb01.vm.network "private_network", ip: "10.240.10.2"
+    
+    lb01.vm.provider :libvirt do |lv|
+       lv.memory=2048
+       lv.cpus=1
+    end 
+ end
+
+# lb-02
+config.vm.define "lb-02" do |lb02|
+    lb02.vm.box = "generic/ubuntu2004"
+    lb02.vm.hostname="lb-02"
+    lb02.vm.network "private_network", ip: "10.240.10.3"
+    
+    lb02.vm.provider :libvirt do |lv|
+       lv.memory=2048
+       lv.cpus=1
+    end 
+ end
+
+
+# controller-01
+config.vm.define "controller-01" do |controller01|
+    controller01.vm.box = "generic/ubuntu2004"
+    controller01.vm.hostname="controller-01"
+    controller01.vm.network "private_network", ip: "10.240.10.4"
+    
+    controller01.vm.provider :libvirt do |lv|
+       lv.memory=2048
+       lv.cpus=1
+    end 
+ end
+
+
+# controller-02
+config.vm.define "controller-02" do |controller02|
+    controller02.vm.box = "generic/ubuntu2004"
+    controller02.vm.hostname="controller-02"
+    controller02.vm.network "private_network", ip: "10.240.10.5"
+    
+    controller02.vm.provider :libvirt do |lv|
+       lv.memory=2048
+       lv.cpus=1
+    end 
+ end
+
+
+# controller-03
+config.vm.define "controller-03" do |controller03|
+    controller03.vm.box = "generic/ubuntu2004"
+    controller03.vm.hostname="controller-03"
+    controller03.vm.network "private_network", ip: "10.240.10.6"
+    
+    controller03.vm.provider :libvirt do |lv|
+       lv.memory=2048
+       lv.cpus=1
+    end 
+ end
+
+
+# worker-01
+config.vm.define "worker-01" do |worker01|
+    worker01.vm.box = "generic/ubuntu2004"
+    worker01.vm.hostname="worker-01"
+    worker01.vm.network "private_network", ip: "10.240.10.7"
+    
+    worker01.vm.provider :libvirt do |lv|
+       lv.memory=4096
+       lv.cpus=2
+    end 
+ end
+
+ # worker-02
+config.vm.define "worker-02" do |worker02|
+    worker02.vm.box = "generic/ubuntu2004"
+    worker02.vm.hostname="worker-02"
+    worker02.vm.network "private_network", ip: "10.240.10.8"
+    
+    worker02.vm.provider :libvirt do |lv|
+       lv.memory=4096
+       lv.cpus=2
+    end 
+ end
+
+ # worker-03
+ config.vm.define "worker-03" do |worker03|
+    worker03.vm.box = "generic/ubuntu2004"
+    worker03.vm.hostname="worker-03"
+    worker03.vm.network "private_network", ip: "10.240.10.9"
+    
+    worker03.vm.provider :libvirt do |lv|
+       lv.memory=4096
+       lv.cpus=2
+    end 
+ end
+
+end
+
